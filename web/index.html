@@ -90,7 +90,7 @@
         <option>8</option><option selected>12</option><option>20</option>
       </select>
     </label>
-    <label><input type="checkbox" id="use-llm"/> 浏览器内尝试 LLM（默认关闭，AI 摘要请看 <a href="reports/latest.html" target="_blank">服务端每日报告</a>）</label>
+    <label><input type="checkbox" id="use-llm"/> 浏览器内实时 LLM 摘要（需在 ⚙️ 模型配置里填好 API Key，直连失败时建议配置 <a href="../docs/CLOUDFLARE_WORKER.md" target="_blank">Cloudflare Worker 代理</a>；也可直接看 <a href="reports/latest.html" target="_blank">服务端每日报告</a>）</label>
   </div>
 
   <div id="status"></div>
@@ -126,6 +126,11 @@
       <input id="cfg-model-custom" type="text" placeholder="自定义模型名" style="margin-top:8px;display:none;"/>
     </div>
     <div class="field">
+      <label>LLM 代理地址（Cloudflare Worker URL，可选）</label>
+      <input id="cfg-llmproxy" type="text" placeholder="https://xxx.workers.dev"/>
+      <div class="sm">浏览器直连 LLM 常因 CORS/内网限制失败。填入你部署的 Cloudflare Worker 地址后，前端将通过它转发请求实时调用模型。部署说明见 <a href="../docs/CLOUDFLARE_WORKER.md" target="_blank">CLOUDFLARE_WORKER.md</a>。</div>
+    </div>
+    <div class="field">
       <label>arXiv CORS 代理（可选）</label>
       <input id="cfg-proxy" type="text" placeholder="https://api.allorigins.win/raw?url="/>
       <div class="sm">arXiv 接口不支持浏览器直连，需经代理。默认已填，可替换为你自己的代理。</div>
@@ -145,11 +150,18 @@
 "use strict";
 // ---------------------------------------------------------------- config store
 const LS = "obr_config";
-const DEFAULTS = { key:"", base:"https://api.openai.com/v1", model:"gpt-4o-mini",
+const DEFAULTS = { key:"", base:"https://api.openai.com/v1", model:"gpt-4o-mini", llmproxy:"",
                    proxy:"https://api.allorigins.win/raw?url=" };
 function loadCfg(){ try{ return {...DEFAULTS, ...JSON.parse(localStorage.getItem(LS)||"{}")}; }catch(e){ return {...DEFAULTS}; } }
 function saveCfg(c){ localStorage.setItem(LS, JSON.stringify(c)); }
 let cfg = loadCfg();
+function llmCall(c, payload){
+  const target = c.base + "/chat/completions";
+  const url = c.llmproxy ? c.llmproxy : target;
+  const h = {"Content-Type":"application/json","Authorization":"Bearer "+c.key};
+  if(c.llmproxy) h["X-Target-Url"] = target;
+  return fetch(url,{method:"POST",headers:h,body:JSON.stringify(payload)});
+}
 
 const KEYWORDS = ["benchmark","evaluation","leaderboard","eval","dataset","metric","sota","state-of-the-art"];
 const PRESETS = ["LLM evaluation benchmark","code generation benchmark","reasoning benchmark",
@@ -170,6 +182,7 @@ $("chips").querySelectorAll(".chip").forEach(el=>el.onclick=()=>{
 // ---------------------------------------------------------------- settings modal
 function openModal(){
   $("cfg-key").value = cfg.key; $("cfg-base").value = cfg.base; $("cfg-proxy").value = cfg.proxy;
+  $("cfg-llmproxy").value = cfg.llmproxy || "";
   const known = ["gpt-4o-mini","gpt-4o","gpt-4.1-mini","deepseek-chat"];
   if(known.includes(cfg.model)){ $("cfg-model-sel").value = cfg.model; $("cfg-model-custom").style.display="none"; }
   else { $("cfg-model-sel").value = "__custom__"; $("cfg-model-custom").style.display="block"; $("cfg-model-custom").value = cfg.model; }
@@ -184,6 +197,7 @@ function readModal(){
   const sel = $("cfg-model-sel").value;
   return { key:$("cfg-key").value.trim(), base:($("cfg-base").value.trim()||DEFAULTS.base).replace(/\/$/,""),
            model: sel==="__custom__" ? ($("cfg-model-custom").value.trim()||DEFAULTS.model) : sel,
+           llmproxy:$("cfg-llmproxy").value.trim().replace(/\/$/,""),
            proxy:$("cfg-proxy").value.trim()||DEFAULTS.proxy };
 }
 $("btn-save").onclick = () => { cfg = readModal(); saveCfg(cfg); closeModal(); status("✅ 配置已保存到本地浏览器"); };
@@ -192,12 +206,10 @@ $("btn-test").onclick = async () => {
   if(!c.key){ r.innerHTML = "<span class='err'>未填 API Key，将使用抽取式摘要（无需测试）。</span>"; return; }
   r.textContent = "测试中…";
   try{
-    const resp = await fetch(c.base+"/chat/completions",{method:"POST",
-      headers:{"Content-Type":"application/json","Authorization":"Bearer "+c.key},
-      body:JSON.stringify({model:c.model,messages:[{role:"user",content:"ping"}],max_tokens:1})});
-    r.innerHTML = resp.ok ? "<span class='ok'>✅ 连接成功</span>"
-      : "<span class='err'>❌ HTTP "+resp.status+"（检查 Key/Base URL/模型；或该端点不支持浏览器 CORS）</span>";
-  }catch(e){ r.innerHTML = "<span class='err'>❌ 请求失败："+esc(e.message)+"（多为 CORS 或网络问题）</span>"; }
+    const resp = await llmCall(c, {model:c.model,messages:[{role:"user",content:"ping"}],max_tokens:1});
+    r.innerHTML = resp.ok ? "<span class='ok'>✅ 连接成功"+(c.llmproxy?"（经 Worker 代理）":"")+"</span>"
+      : "<span class='err'>❌ HTTP "+resp.status+"（检查 Key/Base URL/模型；未用代理时该端点可能不支持浏览器 CORS）</span>";
+  }catch(e){ r.innerHTML = "<span class='err'>❌ 请求失败："+esc(e.message)+"（多为 CORS/内网限制，建议配置 Cloudflare Worker 代理）</span>"; }
 };
 
 // ---------------------------------------------------------------- retrieval (browser)
@@ -256,10 +268,8 @@ function rankDedup(items){
 async function llmSummary(items, topics){
   const cat = items.slice(0,25).map(it=>`- [${it.source}] ${it.title} (${it.published||"—"}) :: ${it.summary.slice(0,180)}`).join("\n");
   const prompt = `你是跟踪 AI/LLM 基准与评测的研究分析师。关注话题：${topics.join(", ")}。\n以下是最近检索到的论文/数据集/模型清单。请用中文写一段简洁的执行摘要（3-5 段），聚焦新基准、重要结果、榜单与评测方法，并具体引用条目标题。随后输出一行 \`HIGHLIGHTS:\`，其后给出 4-7 条要点（每行以 - 开头）。\n\n清单：\n${cat}`;
-  const resp = await fetch(cfg.base+"/chat/completions",{method:"POST",
-    headers:{"Content-Type":"application/json","Authorization":"Bearer "+cfg.key},
-    body:JSON.stringify({model:cfg.model,temperature:0.3,max_tokens:1500,
-      messages:[{role:"system",content:"你是严谨、简洁的研究分析师。"},{role:"user",content:prompt}]})});
+  const resp = await llmCall(cfg, {model:cfg.model,temperature:0.3,max_tokens:1500,
+      messages:[{role:"system",content:"你是严谨、简洁的研究分析师。"},{role:"user",content:prompt}]});
   if(!resp.ok) throw new Error("LLM HTTP "+resp.status);
   const content = (await resp.json()).choices?.[0]?.message?.content || "";
   const idx = content.indexOf("HIGHLIGHTS:");
