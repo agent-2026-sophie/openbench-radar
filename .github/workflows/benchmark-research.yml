@@ -70,10 +70,17 @@ jobs:
             echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
 
+      - name: Assemble site (app + reports)
+        run: |
+          mkdir -p _site
+          cp -r web/* _site/                 # interactive app -> landing page (index.html)
+          mkdir -p _site/reports
+          cp -r reports/* _site/reports/ 2>/dev/null || true
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: reports
+          path: _site
 
   deploy:
     needs: research

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>OpenBench Radar — 交互式基准检索与调研</title>
+<style>
+  :root{--bg:#0d1117;--panel:#161b22;--border:#30363d;--fg:#e6edf3;--muted:#8b949e;
+        --accent:#58a6ff;--green:#3fb950;--purple:#bc8cff;--red:#ff7b72;}
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC",sans-serif;
+       background:var(--bg);color:var(--fg);line-height:1.6;}
+  .wrap{max-width:960px;margin:0 auto;padding:28px 20px 80px;}
+  header{display:flex;align-items:center;justify-content:space-between;gap:12px;}
+  h1{font-size:1.6rem;margin:0;}
+  .sub{color:var(--muted);font-size:.9rem;margin:4px 0 0;}
+  button{cursor:pointer;font-family:inherit;border-radius:8px;border:1px solid var(--border);}
+  .icon-btn{background:var(--panel);color:var(--fg);padding:8px 14px;font-size:.9rem;}
+  .icon-btn:hover{border-color:var(--accent);}
+  .searchbar{display:flex;gap:10px;margin:22px 0 6px;}
+  .searchbar input{flex:1;background:var(--panel);border:1px solid var(--border);color:var(--fg);
+       border-radius:8px;padding:12px 14px;font-size:1rem;}
+  .searchbar input:focus{outline:none;border-color:var(--accent);}
+  .primary{background:var(--accent);color:#0d1117;font-weight:600;padding:0 22px;border:none;}
+  .primary:disabled{opacity:.5;cursor:not-allowed;}
+  .opts{display:flex;flex-wrap:wrap;gap:16px;color:var(--muted);font-size:.86rem;margin-bottom:6px;}
+  .opts label{display:flex;align-items:center;gap:6px;cursor:pointer;}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 8px;}
+  .chip{background:var(--panel);border:1px solid var(--border);border-radius:999px;
+        padding:3px 12px;font-size:.8rem;color:var(--muted);cursor:pointer;}
+  .chip:hover{border-color:var(--accent);color:var(--fg);}
+  #status{color:var(--muted);font-size:.88rem;min-height:22px;margin:8px 0;}
+  .badge{display:inline-block;background:var(--panel);border:1px solid var(--border);
+         border-radius:999px;padding:1px 10px;font-size:.72rem;color:var(--accent);}
+  h2{margin-top:34px;border-bottom:1px solid var(--border);padding-bottom:6px;}
+  .cards{display:grid;gap:12px;margin-top:14px;}
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:12px 15px;}
+  .card a.t{display:block;font-weight:600;color:var(--accent);text-decoration:none;margin:5px 0;}
+  .card a.t:hover{text-decoration:underline;}
+  .card .s{color:var(--muted);font-size:.88rem;margin:5px 0;}
+  .card .m{color:var(--muted);font-size:.76rem;}
+  .src{font-size:.68rem;text-transform:uppercase;letter-spacing:.5px;padding:2px 8px;border-radius:6px;background:#21262d;}
+  .src-arxiv{color:var(--red);} .src-huggingface{color:var(--green);} .src-web{color:var(--purple);}
+  .summary p{white-space:pre-wrap;}
+  ul.hl li{margin:5px 0;}
+  .toolbar{display:flex;gap:10px;margin-top:12px;}
+  /* modal */
+  .mask{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:10;}
+  .mask.show{display:flex;}
+  .modal{background:var(--panel);border:1px solid var(--border);border-radius:12px;width:min(520px,92vw);
+         padding:22px 24px;max-height:88vh;overflow:auto;}
+  .modal h3{margin:0 0 4px;}
+  .modal .hint{color:var(--muted);font-size:.82rem;margin:0 0 16px;}
+  .field{margin-bottom:14px;}
+  .field label{display:block;font-size:.85rem;margin-bottom:5px;color:var(--fg);}
+  .field input,.field select{width:100%;background:#0d1117;border:1px solid var(--border);color:var(--fg);
+       border-radius:8px;padding:9px 11px;font-size:.92rem;}
+  .field input:focus,.field select:focus{outline:none;border-color:var(--accent);}
+  .field .sm{color:var(--muted);font-size:.75rem;margin-top:4px;}
+  .modal-actions{display:flex;justify-content:space-between;gap:10px;margin-top:18px;}
+  .save{background:var(--green);color:#0d1117;border:none;font-weight:600;padding:9px 20px;}
+  .muted-btn{background:transparent;color:var(--muted);}
+  .ok{color:var(--green);} .err{color:var(--red);}
+  a{color:var(--accent);}
+  footer{margin-top:60px;color:var(--muted);font-size:.8rem;text-align:center;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>📡 OpenBench Radar</h1>
+      <p class="sub">输入兴趣关键词 → 自动检索 AI/LLM 基准 → 调研聚合报告</p>
+    </div>
+    <button class="icon-btn" id="btn-settings">⚙️ 模型配置</button>
+  </header>
+
+  <div class="searchbar">
+    <input id="topics" type="text" placeholder="输入关键词，逗号分隔，例如：code generation benchmark, reasoning eval"/>
+    <button class="primary" id="btn-run">生成报告</button>
+  </div>
+
+  <div class="chips" id="chips"></div>
+
+  <div class="opts">
+    <label><input type="checkbox" id="src-arxiv" checked/> arXiv</label>
+    <label><input type="checkbox" id="src-hf" checked/> Hugging Face</label>
+    <label>每源条数
+      <select id="maxitems" style="background:var(--panel);color:var(--fg);border:1px solid var(--border);border-radius:6px;padding:2px 6px;">
+        <option>8</option><option selected>12</option><option>20</option>
+      </select>
+    </label>
+    <label><input type="checkbox" id="use-llm" checked/> 使用 LLM 撰写摘要（需配置）</label>
+  </div>
+
+  <div id="status"></div>
+  <div id="report"></div>
+
+  <footer>OpenBench Radar · 纯前端运行，API Key 仅存于本地浏览器，不上传、不提交仓库</footer>
+</div>
+
+<!-- Settings modal -->
+<div class="mask" id="mask">
+  <div class="modal">
+    <h3>模型配置</h3>
+    <p class="hint">配置 OpenAI 兼容接口用于撰写调研摘要。所有内容仅保存在本地浏览器 <code>localStorage</code>，不会上传或写入仓库。留空则使用不依赖 LLM 的抽取式摘要。</p>
+    <div class="field">
+      <label>API Key</label>
+      <input id="cfg-key" type="password" placeholder="sk-... （留空则用抽取式摘要）"/>
+      <div class="sm">仅存本地；请勿在公共电脑上保存。</div>
+    </div>
+    <div class="field">
+      <label>Base URL</label>
+      <input id="cfg-base" type="text" placeholder="https://api.openai.com/v1"/>
+      <div class="sm">兼容 OpenAI 协议的任意端点（需支持浏览器 CORS）。</div>
+    </div>
+    <div class="field">
+      <label>模型</label>
+      <select id="cfg-model-sel">
+        <option value="gpt-4o-mini">gpt-4o-mini</option>
+        <option value="gpt-4o">gpt-4o</option>
+        <option value="gpt-4.1-mini">gpt-4.1-mini</option>
+        <option value="deepseek-chat">deepseek-chat</option>
+        <option value="__custom__">自定义…</option>
+      </select>
+      <input id="cfg-model-custom" type="text" placeholder="自定义模型名" style="margin-top:8px;display:none;"/>
+    </div>
+    <div class="field">
+      <label>arXiv CORS 代理（可选）</label>
+      <input id="cfg-proxy" type="text" placeholder="https://api.allorigins.win/raw?url="/>
+      <div class="sm">arXiv 接口不支持浏览器直连，需经代理。默认已填，可替换为你自己的代理。</div>
+    </div>
+    <div class="modal-actions">
+      <button class="muted-btn" id="btn-test">测试连接</button>
+      <div>
+        <button class="muted-btn" id="btn-cancel">取消</button>
+        <button class="save" id="btn-save">保存</button>
+      </div>
+    </div>
+    <div id="test-result" style="margin-top:10px;font-size:.85rem;"></div>
+  </div>
+</div>
+
+<script>
+"use strict";
+// ---------------------------------------------------------------- config store
+const LS = "obr_config";
+const DEFAULTS = { key:"", base:"https://api.openai.com/v1", model:"gpt-4o-mini",
+                   proxy:"https://api.allorigins.win/raw?url=" };
+function loadCfg(){ try{ return {...DEFAULTS, ...JSON.parse(localStorage.getItem(LS)||"{}")}; }catch(e){ return {...DEFAULTS}; } }
+function saveCfg(c){ localStorage.setItem(LS, JSON.stringify(c)); }
+let cfg = loadCfg();
+
+const KEYWORDS = ["benchmark","evaluation","leaderboard","eval","dataset","metric","sota","state-of-the-art"];
+const PRESETS = ["LLM evaluation benchmark","code generation benchmark","reasoning benchmark",
+                 "agent benchmark","multimodal benchmark","large language model leaderboard"];
+
+// ---------------------------------------------------------------- dom helpers
+const $ = id => document.getElementById(id);
+const status = msg => { $("status").innerHTML = msg; };
+const esc = s => (s||"").replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+// preset chips
+$("chips").innerHTML = PRESETS.map(p=>`<span class="chip">${esc(p)}</span>`).join("");
+$("chips").querySelectorAll(".chip").forEach(el=>el.onclick=()=>{
+  const cur = $("topics").value.trim();
+  $("topics").value = cur ? cur + ", " + el.textContent : el.textContent;
+});
+
+// ---------------------------------------------------------------- settings modal
+function openModal(){
+  $("cfg-key").value = cfg.key; $("cfg-base").value = cfg.base; $("cfg-proxy").value = cfg.proxy;
+  const known = ["gpt-4o-mini","gpt-4o","gpt-4.1-mini","deepseek-chat"];
+  if(known.includes(cfg.model)){ $("cfg-model-sel").value = cfg.model; $("cfg-model-custom").style.display="none"; }
+  else { $("cfg-model-sel").value = "__custom__"; $("cfg-model-custom").style.display="block"; $("cfg-model-custom").value = cfg.model; }
+  $("test-result").textContent = ""; $("mask").classList.add("show");
+}
+function closeModal(){ $("mask").classList.remove("show"); }
+$("btn-settings").onclick = openModal;
+$("btn-cancel").onclick = closeModal;
+$("mask").onclick = e => { if(e.target === $("mask")) closeModal(); };
+$("cfg-model-sel").onchange = () => { $("cfg-model-custom").style.display = $("cfg-model-sel").value==="__custom__" ? "block":"none"; };
+function readModal(){
+  const sel = $("cfg-model-sel").value;
+  return { key:$("cfg-key").value.trim(), base:($("cfg-base").value.trim()||DEFAULTS.base).replace(/\/$/,""),
+           model: sel==="__custom__" ? ($("cfg-model-custom").value.trim()||DEFAULTS.model) : sel,
+           proxy:$("cfg-proxy").value.trim()||DEFAULTS.proxy };
+}
+$("btn-save").onclick = () => { cfg = readModal(); saveCfg(cfg); closeModal(); status("✅ 配置已保存到本地浏览器"); };
+$("btn-test").onclick = async () => {
+  const c = readModal(); const r = $("test-result");
+  if(!c.key){ r.innerHTML = "<span class='err'>未填 API Key，将使用抽取式摘要（无需测试）。</span>"; return; }
+  r.textContent = "测试中…";
+  try{
+    const resp = await fetch(c.base+"/chat/completions",{method:"POST",
+      headers:{"Content-Type":"application/json","Authorization":"Bearer "+c.key},
+      body:JSON.stringify({model:c.model,messages:[{role:"user",content:"ping"}],max_tokens:1})});
+    r.innerHTML = resp.ok ? "<span class='ok'>✅ 连接成功</span>"
+      : "<span class='err'>❌ HTTP "+resp.status+"（检查 Key/Base URL/模型；或该端点不支持浏览器 CORS）</span>";
+  }catch(e){ r.innerHTML = "<span class='err'>❌ 请求失败："+esc(e.message)+"（多为 CORS 或网络问题）</span>"; }
+};
+
+// ---------------------------------------------------------------- retrieval (browser)
+async function fetchArxiv(query, limit){
+  const search = query.split(/\s+/).filter(t=>t.length>1).map(t=>`all:${t}`).join("+AND+");
+  const cats = "cat:cs.CL+OR+cat:cs.AI+OR+cat:cs.LG";
+  const url = `https://export.arxiv.org/api/query?search_query=(${search})+AND+(${cats})&start=0&max_results=${limit}&sortBy=submittedDate&sortOrder=descending`;
+  const resp = await fetch(cfg.proxy + encodeURIComponent(url));
+  if(!resp.ok) throw new Error("arxiv HTTP "+resp.status);
+  const xml = new DOMParser().parseFromString(await resp.text(), "text/xml");
+  return [...xml.querySelectorAll("entry")].map(e=>({
+    title:(e.querySelector("title")?.textContent||"").trim().replace(/\s+/g," "),
+    url:e.querySelector("id")?.textContent||"",
+    source:"arxiv",
+    summary:(e.querySelector("summary")?.textContent||"").trim().replace(/\s+/g," ").slice(0,400),
+    published:e.querySelector("published")?.textContent?.slice(0,10)||"",
+    tags:[...e.querySelectorAll("category")].map(c=>c.getAttribute("term")).slice(0,4),
+    extra:{}
+  }));
+}
+async function fetchHF(query, limit){
+  const out = [];
+  for(const kind of ["datasets","models"]){
+    const u = `https://huggingface.co/api/${kind}?search=${encodeURIComponent(query)}&limit=${Math.ceil(limit/2)}&full=true&sort=lastModified&direction=-1`;
+    const resp = await fetch(u); if(!resp.ok) continue;
+    for(const row of await resp.json()){
+      if(!row.id) continue;
+      out.push({ title:row.id,
+        url:`https://huggingface.co/${kind==="datasets"?"datasets/":""}${row.id}`,
+        source:"huggingface",
+        summary:`HF ${kind.slice(0,-1)} — ${(row.downloads||0).toLocaleString()} downloads, ${(row.likes||0).toLocaleString()} likes. Tags: ${(row.tags||[]).slice(0,5).join(", ")||"—"}`,
+        published:(row.lastModified||"").slice(0,10),
+        tags:(row.tags||[]).slice(0,6),
+        extra:{downloads:row.downloads||0, likes:row.likes||0} });
+    }
+  }
+  return out;
+}
+// ---------------------------------------------------------------- rank & dedup
+function scoreItem(it){
+  const text = `${it.title} ${it.summary} ${(it.tags||[]).join(" ")}`.toLowerCase();
+  let s = 0;
+  KEYWORDS.forEach(k=>{ if(text.includes(k)) s+=2; if(it.title.toLowerCase().includes(k)) s+=1.5; });
+  if(it.published){ const age=(Date.now()-new Date(it.published))/86400000; s+=Math.max(0,3-age/15); }
+  if(it.extra.downloads) s+=Math.min(3, it.extra.downloads/10000);
+  if(it.extra.likes) s+=Math.min(2, it.extra.likes/100);
+  return Math.round(s*100)/100;
+}
+function rankDedup(items){
+  const seen = new Map();
+  items.forEach(it=>{ const k=(it.url||it.title).toLowerCase(); if(!seen.has(k)) seen.set(k,it); });
+  const arr=[...seen.values()]; arr.forEach(it=>it.score=scoreItem(it));
+  arr.sort((a,b)=>b.score-a.score); return arr;
+}
+// ---------------------------------------------------------------- synthesis
+async function llmSummary(items, topics){
+  const cat = items.slice(0,25).map(it=>`- [${it.source}] ${it.title} (${it.published||"—"}) :: ${it.summary.slice(0,180)}`).join("\n");
+  const prompt = `你是跟踪 AI/LLM 基准与评测的研究分析师。关注话题：${topics.join(", ")}。\n以下是最近检索到的论文/数据集/模型清单。请用中文写一段简洁的执行摘要（3-5 段），聚焦新基准、重要结果、榜单与评测方法，并具体引用条目标题。随后输出一行 \`HIGHLIGHTS:\`，其后给出 4-7 条要点（每行以 - 开头）。\n\n清单：\n${cat}`;
+  const resp = await fetch(cfg.base+"/chat/completions",{method:"POST",
+    headers:{"Content-Type":"application/json","Authorization":"Bearer "+cfg.key},
+    body:JSON.stringify({model:cfg.model,temperature:0.3,max_tokens:1500,
+      messages:[{role:"system",content:"你是严谨、简洁的研究分析师。"},{role:"user",content:prompt}]})});
+  if(!resp.ok) throw new Error("LLM HTTP "+resp.status);
+  const content = (await resp.json()).choices?.[0]?.message?.content || "";
+  const idx = content.indexOf("HIGHLIGHTS:");
+  const summary = idx>=0 ? content.slice(0,idx).trim() : content.trim();
+  const hl = idx>=0 ? content.slice(idx+11).split("\n").filter(l=>/^\s*[-*]/.test(l)).map(l=>l.replace(/^\s*[-*]\s*/,"").trim()) : [];
+  return {summary, highlights:hl, llm:true};
+}
+function extractiveSummary(items, topics){
+  if(!items.length) return {summary:"未检索到相关条目。请尝试更宽泛的关键词。",highlights:[],llm:false};
+  const bySrc={}; items.forEach(it=>bySrc[it.source]=(bySrc[it.source]||0)+1);
+  const srcLine=Object.entries(bySrc).map(([s,n])=>`${n} 条来自 ${s}`).join("，");
+  return { summary:`共检索到 ${items.length} 条与话题（${topics.join("、")}）相关的条目：${srcLine}。以下按 关键词/时效/热度 启发式排序展示。（在“模型配置”中填入 API Key 可启用 LLM 撰写的分析摘要。）`,
+           highlights: items.slice(0,6).map(it=>`[${it.source}] ${it.title} — ${it.summary.slice(0,120)}`), llm:false };
+}
+// ---------------------------------------------------------------- render
+let LAST = null;
+function render(res, items, topics){
+  LAST = {res, items, topics};
+  const cards = items.slice(0,40).map(it=>{
+    const meta=[]; if(it.published) meta.push(it.published);
+    if(it.extra.downloads) meta.push("⬇ "+it.extra.downloads.toLocaleString());
+    if(it.extra.likes) meta.push("♥ "+it.extra.likes.toLocaleString());
+    return `<div class="card"><span class="src src-${it.source}">${it.source}</span>
+      <a class="t" href="${esc(it.url)}" target="_blank" rel="noopener">${esc(it.title)}</a>
+      <p class="s">${esc(it.summary.slice(0,240))}</p>
+      <div class="m">score ${it.score}${meta.length?" · "+esc(meta.join(" · ")):""}</div></div>`;
+  }).join("");
+  const hl = res.highlights.length ? `<h2>关键要点</h2><ul class="hl">${res.highlights.map(h=>`<li>${esc(h)}</li>`).join("")}</ul>`:"";
+  $("report").innerHTML = `
+    <p class="badge">${res.llm?"LLM 摘要":"抽取式摘要"} · ${items.length} 条</p>
+    <div class="summary"><h2>执行摘要</h2><p>${esc(res.summary)}</p></div>
+    ${hl}
+    <h2>检索发现</h2><div class="cards">${cards}</div>
+    <div class="toolbar">
+      <button class="icon-btn" id="dl-md">⬇ 下载 Markdown</button>
+      <button class="icon-btn" id="dl-html">⬇ 下载 HTML</button>
+    </div>`;
+  $("dl-md").onclick = ()=>download(`openbench-${today()}.md`, toMarkdown(LAST), "text/markdown");
+  $("dl-html").onclick = ()=>download(`openbench-${today()}.html`, $("report").outerHTML, "text/html");
+}
+function today(){ return new Date().toISOString().slice(0,10); }
+function toMarkdown({res,items,topics}){
+  let md = `# OpenBench Radar Digest\n\n> ${today()} · ${items.length} 条 · 话题：${topics.join(", ")} · ${res.llm?"LLM":"抽取式"}摘要\n\n## 执行摘要\n\n${res.summary}\n\n`;
+  if(res.highlights.length) md += "## 关键要点\n\n"+res.highlights.map(h=>"- "+h).join("\n")+"\n\n";
+  md += "## 检索发现\n\n"+items.slice(0,40).map(it=>`- **[${it.title}](${it.url})** _(score ${it.score} · ${it.source}${it.published?" · "+it.published:""})_\n  ${it.summary.slice(0,220)}`).join("\n")+"\n";
+  return md;
+}
+function download(name, text, mime){
+  const a=document.createElement("a"); a.href=URL.createObjectURL(new Blob([text],{type:mime})); a.download=name; a.click(); URL.revokeObjectURL(a.href);
+}
+// ---------------------------------------------------------------- run
+$("btn-run").onclick = async () => {
+  const topics = $("topics").value.split(",").map(t=>t.trim()).filter(Boolean);
+  if(!topics.length){ status("<span class='err'>请先输入至少一个关键词。</span>"); return; }
+  const limit = parseInt($("maxitems").value,10);
+  const useArxiv=$("src-arxiv").checked, useHF=$("src-hf").checked, useLLM=$("use-llm").checked;
+  if(!useArxiv && !useHF){ status("<span class='err'>请至少选择一个检索源。</span>"); return; }
+  $("btn-run").disabled=true; $("report").innerHTML=""; let items=[];
+  try{
+    for(const t of topics){
+      if(useArxiv){ status(`检索 arXiv：<b>${esc(t)}</b> …`); try{ items.push(...await fetchArxiv(t,limit)); }catch(e){ console.warn(e); status(`arXiv 检索失败（${esc(e.message)}），继续其他源…`); } }
+      if(useHF){ status(`检索 Hugging Face：<b>${esc(t)}</b> …`); try{ items.push(...await fetchHF(t,limit)); }catch(e){ console.warn(e); } }
+    }
+    const ranked = rankDedup(items);
+    status(`共 ${ranked.length} 条去重结果，正在生成摘要…`);
+    let res;
+    if(useLLM && cfg.key){ try{ res = await llmSummary(ranked, topics); }catch(e){ status(`LLM 摘要失败（${esc(e.message)}），改用抽取式。`); res = extractiveSummary(ranked, topics); } }
+    else res = extractiveSummary(ranked, topics);
+    render(res, ranked, topics); status(`✅ 完成 · ${ranked.length} 条 · ${res.llm?"LLM":"抽取式"}摘要`);
+  }catch(e){ status("<span class='err'>出错："+esc(e.message)+"</span>"); }
+  finally{ $("btn-run").disabled=false; }
+};
+$("topics").addEventListener("keydown", e=>{ if(e.key==="Enter") $("btn-run").click(); });
+</script>
+</body>
+</html>
