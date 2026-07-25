@@ -1,0 +1,56 @@
+# OpenBench Radar — AI/LLM Benchmark Digest
+
+> Generated **2026-07-25 10:01 UTC** · 57 items · topics: LLM evaluation benchmark, large language model leaderboard, code generation benchmark, reasoning benchmark LLM, agent benchmark evaluation · analysis: extractive fallback
+
+## Executive Summary
+
+Retrieved **57** relevant items across topics (LLM evaluation benchmark, large language model leaderboard, code generation benchmark, reasoning benchmark LLM, agent benchmark evaluation): 55 from arxiv, 2 from huggingface. The most relevant findings, ranked by a keyword/recency/popularity heuristic, are listed below. (Set OPENAI_API_KEY to enable an LLM-written analytical summary.)
+
+## Key Highlights
+
+- [arxiv] A Comparative Evaluation of Embeddings and LLMs in a Greek Book Publisher Setting - The CUP Dataset — We present CUP, a Greek book retrieval benchmark consisting of 868 catalog records and 104 expert-annotated queries with graded relevance ju
+- [huggingface] aiagentkarl/agent-evaluation-benchmark — Hugging Face dataset — 31 downloads, 0 likes. Tags: task_categories:text-generation, task_categories:question-answering, license:mit, size_c
+- [arxiv] Tencent WorkBuddy Bench: A Multi-Domain Coding-Agent Benchmark with Contamination-Resistant Task Construction — We introduce Tencent WorkBuddy Bench, a multi-domain evaluation suite for coding agents; this report documents its construction methodology,
+- [arxiv] Coresets Before Score Sets: Evaluation-Unsupervised Prompt Subset Selection for LLM Benchmarks — We study LLM benchmark coreset selection: selecting a small subset of prompts over multiple benchmarks whose induced model scores and rankin
+- [arxiv] RW-Voice-EQ Bench: A Real World Benchmark for Evaluating Voice AI Systems — Current voice AI benchmarks typically evaluate isolated capabilities such as speech intelligibility, word error rate, or text-based dialogue
+- [arxiv] Beyond the Leaderboard: A Synthesis of Tool-Use, Planning, and Reasoning Failures in Large Language Model Agents — Large language model (LLM) agents are increasingly evaluated on their ability to use tools, plan multi-step tasks, coordinate with other age
+
+## Findings by Source
+
+### Arxiv (55)
+
+- **[A Comparative Evaluation of Embeddings and LLMs in a Greek Book Publisher Setting - The CUP Dataset](https://arxiv.org/abs/2607.21274v1)** _(score 15.433 · 2026-07-23 · Katerina Papantoniou, Panagiotis Papadakos, Theodore Patkos…)_
+  We present CUP, a Greek book retrieval benchmark consisting of 868 catalog records and 104 expert-annotated queries with graded relevance judgments. We evaluate sparse (BM25), dense (sentence-transformers), hybrid, and LLM-assisted retrieval methods in this book-search setting. M
+- **[Tencent WorkBuddy Bench: A Multi-Domain Coding-Agent Benchmark with Contamination-Resistant Task Construction](https://arxiv.org/abs/2607.20911v1)** _(score 12.367 · 2026-07-23 · Tencent WorkBuddy Bench Team, Siqi Cai, Shaopeng Chen…)_
+  We introduce Tencent WorkBuddy Bench, a multi-domain evaluation suite for coding agents; this report documents its construction methodology, scoring protocol, and a cross-model leaderboard. At its core is a unified evaluation framework for constructing and running distribution-in
+- **[Coresets Before Score Sets: Evaluation-Unsupervised Prompt Subset Selection for LLM Benchmarks](https://arxiv.org/abs/2607.09739v1)** _(score 12.033 · 2026-07-02 · Jihan Yao, Gantavya Bhatt, Arnav Das…)_
+  We study LLM benchmark coreset selection: selecting a small subset of prompts over multiple benchmarks whose induced model scores and rankings approximate those obtained from the full benchmark suite. In evaluation-unsupervised benchmark coreset selection (our approach), the sele
+- **[RW-Voice-EQ Bench: A Real World Benchmark for Evaluating Voice AI Systems](https://arxiv.org/abs/2607.14846v1)** _(score 11.467 · 2026-07-16 · David Ayllon, Alice Baird, Jeffrey Brooks…)_
+  Current voice AI benchmarks typically evaluate isolated capabilities such as speech intelligibility, word error rate, or text-based dialogue quality, but they rarely test whether systems harness the acoustic information that distinguishes spoken language from its textual represen
+- **[Beyond the Leaderboard: A Synthesis of Tool-Use, Planning, and Reasoning Failures in Large Language Model Agents](https://arxiv.org/abs/2607.05775v1)** _(score 11.3 · 2026-07-07 · Wael Albayaydh, Rui Zhao, Ivan Flechais)_
+  Large language model (LLM) agents are increasingly evaluated on their ability to use tools, plan multi-step tasks, coordinate with other agents, and operate over extended horizons. Reported benchmark gains often obscure recurring failure modes documented across otherwise unrelate
+- **[RUMBA: Russian User Memory Benchmark](https://arxiv.org/abs/2607.21447v1)** _(score 10.433 · 2026-07-23 · Elizaveta Shevtsova, Inna Glebkina, Mark Baushenko…)_
+  The ability to handle long-term memory in LLMs is becoming increasingly critical, yet existing benchmarks remain English-centric and rely on aggregate retrieval metrics, failing to capture interactions between long-range context, temporal information, and reasoning. To address th
+- **[Position Bias is Hidden Behind Ceiling Effects: A Permutation Diagnostic for LLM Benchmarks](https://arxiv.org/abs/2607.20864v1)** _(score 10.367 · 2026-07-23 · Hiroki Tamba)_
+  Position bias in multiple-choice LLM evaluation is widely cited as a confound in capability comparisons, but published measurements rely on single answer-order shuffles whose results confound the bias signal with content-level noise and sampling stochasticity. I introduce inspect
+- **[HalluTruthQA: A Fine-Grained Benchmark for Hallucination Detection, Localization, and Explanation in Arabic Question Answering](https://arxiv.org/abs/2607.20219v1)** _(score 10.367 · 2026-07-22 · Abdessalam Bouchekif, Mohammed-En-Nadhir Zighem, Salah Eddine Bekhouche…)_
+  Large language models (LLMs) can generate fluent Arabic answers, yet factual errors remain difficult to detect, localize, explain, and verify. Existing hallucination benchmarks often provide response-level labels, with limited support for identifying the exact erroneous content,
+- **[QuantiBias: Benchmarking Quantization-Induced Bias in LLMs](https://arxiv.org/abs/2607.21063v1)** _(score 10.367 · 2026-07-23 · Emilio Ferrara)_
+  Almost every large language model that reaches a broad audience is quantized: trained in full precision, then compressed for efficiency. This step is assumed harmless and its safety is rarely re-checked. We find its principal side effect is increased bias that standard safety eva
+- **[MemTools: A Unified Research Framework for Interoperable Agent Memory](https://arxiv.org/abs/2607.21404v1)** _(score 8.933 · 2026-07-23 · Chengfeng Zhao, Jinhui Chen, Sirui Liang…)_
+  While memory systems are essential for agent architectures, pervasive architectural fragmentation restricts systematic research. Existing implementations typically couple different stages of the memory lifecycle, entangle evaluation logic with specific datasets, and provide limit
+- **[GuardianAgentBench: Where Agents Fail and How to Guard Them](https://arxiv.org/abs/2607.20982v1)** _(score 8.867 · 2026-07-23 · Vishal Ishwar Naik, Chenyu Xu, Donna Dong…)_
+  As large language model agents increasingly operate autonomously with access to tools and external environments, ensuring their safe and reliable behavior becomes critical. We present GuardianAgentBench (GABench), a benchmark of 580 scenarios across six domains evaluated on three
+- **[Pre-Flight: A Benchmark for Evaluating Large Language Models on Aviation Operational Knowledge](https://arxiv.org/abs/2607.01829v1)** _(score 8.467 · 2026-07-02 · Alex Brooker, Tim Hughes)_
+  Large language models (LLMs) are increasingly proposed for aviation business operations, from documentation and training generation to customer facing assistants. General purpose benchmarks do not measure whether a model reasons safely and correctly about aviation specific operat
+
+### Huggingface (2)
+
+- **[aiagentkarl/agent-evaluation-benchmark](https://huggingface.co/datasets/aiagentkarl/agent-evaluation-benchmark)** _(score 12.503 · 2026-03-20 · 31 downloads)_
+  Hugging Face dataset — 31 downloads, 0 likes. Tags: task_categories:text-generation, task_categories:question-answering, license:mit, size_categories:n<1K, format:csv
+- **[medreason/llm-medical-reasoning-steps-benchmark](https://huggingface.co/datasets/medreason/llm-medical-reasoning-steps-benchmark)** _(score 5.516 · 2026-05-04 · 64 downloads)_
+  Hugging Face dataset — 64 downloads, 1 likes. Tags: task_categories:question-answering, task_categories:text-generation, language:en, license:cc-by-nc-4.0, size_categories:1K<n<10K
+
+---
+
+_Produced by [OpenBench Radar](https://github.com/) — automated benchmark retrieval, research & reporting._
