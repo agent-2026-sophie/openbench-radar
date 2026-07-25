@@ -1,0 +1,67 @@
+# ==========================================================================
+# OpenBench Radar configuration
+# Everything here can be overridden by CLI flags or environment variables.
+# ==========================================================================
+
+# Topics / research themes the agent tracks. Each topic is expanded into
+# source-specific queries by the retrieval layer.
+topics:
+  - "LLM evaluation benchmark"
+  - "large language model leaderboard"
+  - "code generation benchmark"
+  - "reasoning benchmark LLM"
+  - "agent benchmark evaluation"
+
+# Extra keywords used to score / boost relevance of retrieved items.
+relevance_keywords:
+  - benchmark
+  - evaluation
+  - leaderboard
+  - eval
+  - dataset
+  - metric
+  - sota
+  - state-of-the-art
+
+# ------------------------------------------------------------------ sources
+sources:
+  arxiv:
+    enabled: true
+    max_items: 15
+    # arXiv categories to restrict the search (cs.CL = computation & language)
+    categories: ["cs.CL", "cs.AI", "cs.LG"]
+    # Only keep papers from the last N days.
+    recency_days: 30
+
+  huggingface:
+    enabled: true
+    max_items: 15
+    # What to pull: "datasets", "models", or both.
+    kinds: ["datasets", "models"]
+    # HF search is literal and datasets move slower than papers, so keep a wider window.
+    recency_days: 180
+
+  web:
+    # Requires TAVILY_API_KEY or SERPER_API_KEY. Silently skipped if absent.
+    enabled: true
+    max_items: 10
+
+# ------------------------------------------------------------------ research
+llm:
+  # Provider is OpenAI-compatible. Model / base_url can be overridden by env vars
+  # OPENAI_MODEL / OPENAI_BASE_URL.
+  model: "gpt-4o-mini"
+  temperature: 0.3
+  max_tokens: 2000
+  # If true and no API key is available, use the extractive fallback instead of failing.
+  fallback_when_no_key: true
+
+# ------------------------------------------------------------------ report
+report:
+  title: "OpenBench Radar — AI/LLM Benchmark Digest"
+  # Group items by source in the report body.
+  group_by_source: true
+  # Max items to list per section in the final report.
+  max_items_per_section: 12
+  # Keep the N most recent reports index entries on the HTML landing page.
+  history_size: 30

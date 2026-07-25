@@ -1,0 +1,9 @@
+# Core dependencies
+requests>=2.31.0
+PyYAML>=6.0
+feedparser>=6.0.10      # arXiv Atom feed parsing
+python-dateutil>=2.8.2
+
+# Optional (LLM research) — the code degrades gracefully if these are absent at runtime.
+# The OpenAI client is used only when OPENAI_API_KEY is set.
+openai>=1.30.0
