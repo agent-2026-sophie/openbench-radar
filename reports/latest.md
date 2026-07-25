@@ -1,6 +1,6 @@
 # OpenBench Radar — AI/LLM Benchmark Digest
 
-> Generated **2026-07-25 10:11 UTC** · 57 items · topics: LLM evaluation benchmark, large language model leaderboard, code generation benchmark, reasoning benchmark LLM, agent benchmark evaluation · analysis: extractive fallback
+> Generated **2026-07-25 11:33 UTC** · 57 items · topics: LLM evaluation benchmark, large language model leaderboard, code generation benchmark, reasoning benchmark LLM, agent benchmark evaluation · analysis: extractive fallback
 
 ## Executive Summary
 
@@ -25,7 +25,7 @@ Retrieved **57** relevant items across topics (LLM evaluation benchmark, large l
   We introduce Tencent WorkBuddy Bench, a multi-domain evaluation suite for coding agents; this report documents its construction methodology, scoring protocol, and a cross-model leaderboard. At its core is a unified evaluation framework for constructing and running distribution-in
 - **[Coresets Before Score Sets: Evaluation-Unsupervised Prompt Subset Selection for LLM Benchmarks](https://arxiv.org/abs/2607.09739v1)** _(score 12.033 · 2026-07-02 · Jihan Yao, Gantavya Bhatt, Arnav Das…)_
   We study LLM benchmark coreset selection: selecting a small subset of prompts over multiple benchmarks whose induced model scores and rankings approximate those obtained from the full benchmark suite. In evaluation-unsupervised benchmark coreset selection (our approach), the sele
-- **[RW-Voice-EQ Bench: A Real World Benchmark for Evaluating Voice AI Systems](https://arxiv.org/abs/2607.14846v1)** _(score 11.467 · 2026-07-16 · David Ayllon, Alice Baird, Jeffrey Brooks…)_
+- **[RW-Voice-EQ Bench: A Real World Benchmark for Evaluating Voice AI Systems](https://arxiv.org/abs/2607.14846v1)** _(score 11.4 · 2026-07-16 · David Ayllon, Alice Baird, Jeffrey Brooks…)_
   Current voice AI benchmarks typically evaluate isolated capabilities such as speech intelligibility, word error rate, or text-based dialogue quality, but they rarely test whether systems harness the acoustic information that distinguishes spoken language from its textual represen
 - **[Beyond the Leaderboard: A Synthesis of Tool-Use, Planning, and Reasoning Failures in Large Language Model Agents](https://arxiv.org/abs/2607.05775v1)** _(score 11.3 · 2026-07-07 · Wael Albayaydh, Rui Zhao, Ivan Flechais)_
   Large language model (LLM) agents are increasingly evaluated on their ability to use tools, plan multi-step tasks, coordinate with other agents, and operate over extended horizons. Reported benchmark gains often obscure recurring failure modes documented across otherwise unrelate
