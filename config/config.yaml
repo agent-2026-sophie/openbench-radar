@@ -48,9 +48,11 @@ sources:
 
 # ------------------------------------------------------------------ research
 llm:
-  # Provider is OpenAI-compatible. Model / base_url can be overridden by env vars
-  # OPENAI_MODEL / OPENAI_BASE_URL.
-  model: "gpt-4o-mini"
+  # OpenAI-compatible provider. Defaults below target the ARK model.
+  # Only the API key is secret (set OPENAI_API_KEY / ARK_API_KEY as a repo Secret);
+  # base_url & model are non-sensitive and can stay here or be overridden by env.
+  model: "ep-20260623142718-7q245"
+  base_url: "http://ark-cn-beijing.bytedance.net/api/v3"
   temperature: 0.3
   max_tokens: 2000
   # If true and no API key is available, use the extractive fallback instead of failing.

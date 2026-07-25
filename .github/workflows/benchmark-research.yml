@@ -41,11 +41,12 @@ jobs:
 
       - name: Run pipeline
         env:
-          # These are optional. Add them under repo Settings → Secrets to enable
-          # LLM synthesis and web search. Absent secrets => graceful fallback.
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          OPENAI_BASE_URL: ${{ secrets.OPENAI_BASE_URL }}
-          OPENAI_MODEL: ${{ secrets.OPENAI_MODEL }}
+          # ARK model (OpenAI-compatible). Only the API key is a secret;
+          # add it under repo Settings → Secrets and variables → Actions as ARK_API_KEY.
+          # base_url & model are non-sensitive and set inline here.
+          OPENAI_API_KEY: ${{ secrets.ARK_API_KEY }}
+          OPENAI_BASE_URL: http://ark-cn-beijing.bytedance.net/api/v3
+          OPENAI_MODEL: ep-20260623142718-7q245
           TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
           SERPER_API_KEY: ${{ secrets.SERPER_API_KEY }}
         run: |
