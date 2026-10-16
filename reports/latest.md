@@ -1,48 +1,48 @@
 # OpenBench Radar — AI/LLM Benchmark Digest
 
-> Generated **2026-10-15 13:08 UTC** · 59 items · topics: LLM evaluation benchmark, large language model leaderboard, code generation benchmark, reasoning benchmark LLM, agent benchmark evaluation · analysis: extractive fallback
+> Generated **2026-10-16 13:03 UTC** · 61 items · topics: LLM evaluation benchmark, large language model leaderboard, code generation benchmark, reasoning benchmark LLM, agent benchmark evaluation · analysis: extractive fallback
 
 ## Executive Summary
 
-Retrieved **59** relevant items across topics (LLM evaluation benchmark, large language model leaderboard, code generation benchmark, reasoning benchmark LLM, agent benchmark evaluation): 58 from arxiv, 1 from huggingface. The most relevant findings, ranked by a keyword/recency/popularity heuristic, are listed below. (Set OPENAI_API_KEY to enable an LLM-written analytical summary.)
+Retrieved **61** relevant items across topics (LLM evaluation benchmark, large language model leaderboard, code generation benchmark, reasoning benchmark LLM, agent benchmark evaluation): 60 from arxiv, 1 from huggingface. The most relevant findings, ranked by a keyword/recency/popularity heuristic, are listed below. (Set OPENAI_API_KEY to enable an LLM-written analytical summary.)
 
 ## Key Highlights
 
+- [arxiv] SITAR: A Situational Distortion Metric for Automatic Speech Recognition Evaluation — In automatic speech recognition (ASR), transcription errors with similar lexical or semantic discrepancies can have markedly different conse
 - [arxiv] OpenTWBench (Open Taiwan Benchmark): Taiwan-Domain Knowledge Evaluation for Large Language Models, and How the Measurement Apparatus Shapes the Score — We present OpenTWBench, an open evaluation suite for Taiwan-domain knowledge in large language models, built around two benchmarks. tw-exam-
 - [arxiv] GNN-CB: A Graph Neural Network Competition Benchmark for Human and LLM Evaluation — Large language models (LLMs) have demonstrated strong performance on coding and reasoning benchmarks; however, their ability to solve graph-
-- [arxiv] Scaling Multilingual Safety and Reasoning Evaluation through Reasoning-Guided Translation — Large language models (LLMs) are increasingly deployed across languages, yet their safety and reasoning capabilities remain predominantly ev
-- [arxiv] EvalBuilder: Can LLMs Build Efficient Benchmarks? — Large language model (LLM) agents are increasingly used for long-horizon research and engineering, yet evaluating these capabilities remains
+- [arxiv] Shortcut Sensitivity in Agent-Safety Evaluations — AI agents take actions through tools. Some actions are sensitive, so guards that supervise them must themselves be evaluated reliably. Yet t
 - [arxiv] Re-executing Coding-Agent Evaluations: Unchanged Decisions and Unresolved Policy Risk — Executable tests grade large language model (LLM) coding-agent patches for leaderboards, rewards and self-improvement. Two preregistered re-
 - [arxiv] Beyond Leaderboards: Tokenomics of Agentic Small Language Model Ensembles — As large language models (LLMs) move from standalone assistants into agentic workflows, evaluation must extend beyond scalar leaderboard acc
 
 ## Findings by Source
 
-### Arxiv (58)
+### Arxiv (60)
 
-- **[OpenTWBench (Open Taiwan Benchmark): Taiwan-Domain Knowledge Evaluation for Large Language Models, and How the Measurement Apparatus Shapes the Score](https://arxiv.org/abs/2610.19848v1)** _(score 13.433 · 2026-10-14 · Liang-Hsun Huang, Min-Yi Chen, Chao-Chun Chuang…)_
+- **[SITAR: A Situational Distortion Metric for Automatic Speech Recognition Evaluation](https://arxiv.org/abs/2610.21440v1)** _(score 13.433 · 2026-10-15 · Mingzhe Lu, Jinhao Liu, Yunpeng Li…)_
+  In automatic speech recognition (ASR), transcription errors with similar lexical or semantic discrepancies can have markedly different consequences for the situation conveyed by speech. Capturing these differences requires not merely contextual assessment, but an understanding of
+- **[OpenTWBench (Open Taiwan Benchmark): Taiwan-Domain Knowledge Evaluation for Large Language Models, and How the Measurement Apparatus Shapes the Score](https://arxiv.org/abs/2610.19848v1)** _(score 13.367 · 2026-10-14 · Liang-Hsun Huang, Min-Yi Chen, Chao-Chun Chuang…)_
   We present OpenTWBench, an open evaluation suite for Taiwan-domain knowledge in large language models, built around two benchmarks. tw-exam-bench contains 255,854 four-option questions across 148 academic subjects, from fifteen years of Taiwan's national examinations published as
-- **[GNN-CB: A Graph Neural Network Competition Benchmark for Human and LLM Evaluation](https://arxiv.org/abs/2610.05387v1)** _(score 12.833 · 2026-10-04 · Murad Hossen, Tasneem Selim, Gurur Gamgam…)_
+- **[GNN-CB: A Graph Neural Network Competition Benchmark for Human and LLM Evaluation](https://arxiv.org/abs/2610.05387v1)** _(score 12.767 · 2026-10-04 · Murad Hossen, Tasneem Selim, Gurur Gamgam…)_
   Large language models (LLMs) have demonstrated strong performance on coding and reasoning benchmarks; however, their ability to solve graph-structured machine learning problems remains largely unexplored. In particular, no benchmark currently evaluates whether LLMs can autonomous
-- **[Scaling Multilingual Safety and Reasoning Evaluation through Reasoning-Guided Translation](https://arxiv.org/abs/2610.20221v1)** _(score 12.0 · 2026-10-14 · Zahraa Al Sahili, Ioannis Patras, Matthew Purver)_
-  Large language models (LLMs) are increasingly deployed across languages, yet their safety and reasoning capabilities remain predominantly evaluated in English. Translating existing benchmarks offers a scalable approach to multilingual evaluation, but preserving task-specific mean
-- **[EvalBuilder: Can LLMs Build Efficient Benchmarks?](https://arxiv.org/abs/2610.20099v1)** _(score 11.933 · 2026-10-14 · Huaisheng Zhu, Hangfan Zhang, Teng Xiao…)_
-  Large language model (LLM) agents are increasingly used for long-horizon research and engineering, yet evaluating these capabilities remains expensive, time-consuming, and heavily dependent on human expertise. This motivates a natural question: can LLM agents themselves construct
-- **[Re-executing Coding-Agent Evaluations: Unchanged Decisions and Unresolved Policy Risk](https://arxiv.org/abs/2610.14460v1)** _(score 11.667 · 2026-10-10 · Tianyu Ding, Yaocheng Tong, Muzhi Yang…)_
+- **[Shortcut Sensitivity in Agent-Safety Evaluations](https://arxiv.org/abs/2610.22243v1)** _(score 12.0 · 2026-10-15 · Hasan Demirkiran, Jens Ernstberger)_
+  AI agents take actions through tools. Some actions are sensitive, so guards that supervise them must themselves be evaluated reliably. Yet the data used to evaluate a guard can include cues that make labels predictable without measuring the intended safety construct, and those cu
+- **[Re-executing Coding-Agent Evaluations: Unchanged Decisions and Unresolved Policy Risk](https://arxiv.org/abs/2610.14460v1)** _(score 11.6 · 2026-10-10 · Tianyu Ding, Yaocheng Tong, Muzhi Yang…)_
   Executable tests grade large language model (LLM) coding-agent patches for leaderboards, rewards and self-improvement. Two preregistered re-execution studies returned negative results. SWE-bench Pro v1's offline option rejected none of 59 accepted Go patches whose grading configu
-- **[Beyond Leaderboards: Tokenomics of Agentic Small Language Model Ensembles](https://arxiv.org/abs/2610.00954v1)** _(score 11.567 · 2026-10-01 · Alexei N. Skurikhin, Emily M. Taylor, Nathan A. DeBardeleben)_
+- **[Beyond Leaderboards: Tokenomics of Agentic Small Language Model Ensembles](https://arxiv.org/abs/2610.00954v1)** _(score 11.5 · 2026-10-01 · Alexei N. Skurikhin, Emily M. Taylor, Nathan A. DeBardeleben)_
   As large language models (LLMs) move from standalone assistants into agentic workflows, evaluation must extend beyond scalar leaderboard accuracy to account for operational reliability, cost, latency, and token efficiency. We use an agentic ensemble of small language models (SLMs
-- **[From Triage to Impact: A Multi-Hop Reasoning Benchmark for Explainable Persian Hate Speech](https://arxiv.org/abs/2610.20370v1)** _(score 10.5 · 2026-10-14 · Ghazal Kalhor, Sima Kamandloo, Mehrsa Shamsian…)_
-  Hate speech has become increasingly prevalent on social media, raising concerns about its detection, interpretation, and moderation. Persian, a relatively low-resource language, lacks sufficient annotated data and computational resources for fine-grained hate speech analysis. In
-- **[MultiPartyTurnBench: Benchmarking Floor Control in Multi-Party Spoken Dialogue](https://arxiv.org/abs/2610.20172v1)** _(score 10.5 · 2026-10-14 · Puneet Mathur, Dinesh Manocha)_
-  Full-duplex speech systems must decide when to enter, hold, or relinquish the conversational floor, even as multiple speakers overlap or backchannel without taking it. Existing evaluations study dyadic turn-taking or end-to-end agent behavior, but lack a unified, controlled evalu
-- **[Beyond Benchmark Accuracy: A Diagnostic Test for LLM Chemical Prediction](https://arxiv.org/abs/2610.19906v1)** _(score 10.433 · 2026-10-14 · Yanyi Su, Yu Zeng, Hongshuai Wang…)_
-  LLMs have achieved strong performance on chemical prediction benchmarks. However, existing evaluation methods typically provide target entity identity information directly, making it difficult to determine whether model predictions arise from transferable structure-property reaso
-- **[SEA-HELM Audio: Evaluating Multilingual ASR-LLM Pipeline Performance Across SEA-HELM Subsets](https://arxiv.org/abs/2610.19869v1)** _(score 10.433 · 2026-10-14 · Yixian Tan, Aulia Adila, Jonathan Heng…)_
-  We introduce SEA-HELM Audio, a Southeast Asian (SEA) multilingual evaluation framework that extends the text-based SEA-HELM benchmark to assess performance degradation in cascaded automatic speech recognition and large language model (ASR-LLM) pipelines. Using synthesized speech,
-- **[When Non-Adversarial Noise Hurts Learning: Benchmarking Skill Self-Evolution in Agents](https://arxiv.org/abs/2610.19910v1)** _(score 10.433 · 2026-10-14 · Tao Yu, Zhongtian Luo, Yuchen Long…)_
-  Large language model agents increasingly improve by distilling experience into reusable skills, but errors in that experience can persist in learned rules and affect later tasks. Existing evaluations largely examine clean learning or perturbations encountered after skills are fro
-- **[ACED-Bench: Evaluating How LLM Agents Acquire and Act on Causal Evidence](https://arxiv.org/abs/2610.14381v1)** _(score 10.167 · 2026-10-09 · Yiwei Chen, Amila Weerasinghe, Siddharth Biswal…)_
+- **[MindEval2: Clinically Grounded Patients and Rubrics for Evaluating Language Models in Mental Health Support](https://arxiv.org/abs/2610.22314v1)** _(score 10.5 · 2026-10-15 · John Mendonça, Daniel Tschernutter, José Pombal…)_
+  With people increasingly turning to AI chatbots for mental health support, the need to evaluate these tools is becoming more pressing. Recent benchmarks attempt to mimic a realistic setting by simulating multi-turn interactions with synthetic patients and evaluating them with an
+- **[AI Consilium: a Benchmark of LLM Clinical Multidisciplinary Second Opinions](https://arxiv.org/abs/2610.22298v1)** _(score 10.5 · 2026-10-15 · Alexey A. Bokov, Ivan I. Panin, Nikolay B. Nechaev…)_
+  Large language models (LLMs) can generate differential diagnoses for complex cases, but a useful second opinion must also be factually grounded, clinically coherent, actionable, and safe. We developed a multidimensional benchmark using 300 diagnostically resolved NEJM--MedQA case
+- **[Beyond Downstream QA: Rethinking How We Evaluate Agent Memory](https://arxiv.org/abs/2610.22209v1)** _(score 10.5 · 2026-10-15 · Sebastian-Antonio Toma, Jean de Kernier, Mike Ply…)_
+  Agent memory benchmarks evaluate whether an agent's responses reflect correct knowledge, measuring downstream question-answering accuracy as a proxy for memory quality. We show this evaluation paradigm is incomplete: it conflates memory correctness with retrieval and generation q
+- **[WEAVE: Weaving Real-World Code Evolution into Dependency-Structured Tasks for Benchmarking and Training Code Agents](https://arxiv.org/abs/2610.22039v1)** _(score 10.5 · 2026-10-15 · Weihao Li, Zihang Xu, Zhongqiu Wang…)_
+  Real-world software engineering rarely consists of isolated changes. Features, migrations, and systematic fixes often unfold across multiple pull requests (PRs), requiring coordinated modifications across a repository. Yet most executable repository-level benchmarks retain a sing
+- **[ACED-Bench: Evaluating How LLM Agents Acquire and Act on Causal Evidence](https://arxiv.org/abs/2610.14381v1)** _(score 10.1 · 2026-10-09 · Yiwei Chen, Amila Weerasinghe, Siddharth Biswal…)_
   Large language models are increasingly used as scientific assistants, yet we still lack reliable ways to evaluate whether they can investigate a system rather than merely answer a prompt. A useful evaluation must let agents choose experiments, interpret finite evidence, and make
+- **[PROBE: Learning to Audit Policy Compliance in Tool-Using LLM Agents](https://arxiv.org/abs/2610.22124v1)** _(score 9.0 · 2026-10-15 · Kshitij Mishra, Abhijith Sharma, Nils Lukas…)_
+  Modern agentic systems extend language models with external tools, enabling them to complete complex tasks through multi-turn interactions. As these agents are deployed in consequential settings, they are often constrained by policies governing pricing, privacy, confirmation, saf
 
 ### Huggingface (1)
 
