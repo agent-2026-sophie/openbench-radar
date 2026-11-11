@@ -1,54 +1,54 @@
 # OpenBench Radar — AI/LLM Benchmark Digest
 
-> Generated **2026-11-10 16:10 UTC** · 67 items · topics: LLM evaluation benchmark, large language model leaderboard, code generation benchmark, reasoning benchmark LLM, agent benchmark evaluation · analysis: extractive fallback
+> Generated **2026-11-11 15:54 UTC** · 58 items · topics: LLM evaluation benchmark, large language model leaderboard, code generation benchmark, reasoning benchmark LLM, agent benchmark evaluation · analysis: extractive fallback
 
 ## Executive Summary
 
-Retrieved **67** relevant items across topics (LLM evaluation benchmark, large language model leaderboard, code generation benchmark, reasoning benchmark LLM, agent benchmark evaluation): 65 from arxiv, 2 from huggingface. The most relevant findings, ranked by a keyword/recency/popularity heuristic, are listed below. (Set OPENAI_API_KEY to enable an LLM-written analytical summary.)
+Retrieved **58** relevant items across topics (LLM evaluation benchmark, large language model leaderboard, code generation benchmark, reasoning benchmark LLM, agent benchmark evaluation): 56 from arxiv, 2 from huggingface. The most relevant findings, ranked by a keyword/recency/popularity heuristic, are listed below. (Set OPENAI_API_KEY to enable an LLM-written analytical summary.)
 
 ## Key Highlights
 
-- [huggingface] goodgentleman918/ai-data-quality-llm-evaluation-benchmark — Hugging Face dataset — 0 downloads, 1 likes. Tags: task_categories:reinforcement-learning, language:en, license:mit, size_categories:n<1K, m
-- [arxiv] A Benchmark and Layered Evaluation Protocol for Evidence-Grounded Shared Belief Updating in Connected Robotics — Connected physical systems fuse observations from robots, IoT sensors, and edge-AI modules into a shared account of the world, yet most eval
-- [arxiv] More Than Just Style: Benchmarking Personality Influence in Large Language Models — In addition to the effects of explicit input prompts and instructions, large language model outputs are influenced by underlying behavioral
-- [arxiv] ChemInsight: A Comprehensive Benchmark for Evaluating and Diagnosing Chemistry Understanding and Reasoning in Large Language Models — We introduce ChemInsight, a benchmark designed to evaluate large language models (LLMs) on chemistry tasks that require multi-step reasoning
-- [arxiv] EndoSCOP-V: A Multi-Turn Video Understanding Evaluation Framework for Multimodal Models in Endoscopy Reporting and Clinical Reasoning — Endoscopic diagnosis unfolds over native video, where a single positive finding during traversal of the gastrointestinal tract sets off a mu
-- [arxiv] OpenTWBench (Open Taiwan Benchmark): Taiwan-Domain Knowledge Evaluation for Large Language Models, and How the Measurement Apparatus Shapes the Score — We present OpenTWBench, an open evaluation suite for Taiwan-domain knowledge in large language models, built around two benchmarks. tw-exam-
+- [huggingface] goodgentleman918/ai-data-quality-llm-evaluation-benchmark — Hugging Face dataset — 42 downloads, 1 likes. Tags: task_categories:reinforcement-learning, language:en, license:mit, size_categories:n<1K,
+- [arxiv] Chem World: A Large-Scale Benchmark and Physics-Aware Framework for Trustworthy Molecular Property Prediction — Molecular property prediction is fundamental to computational chemistry and drug formulation research, yet existing benchmarks remain fragme
+- [arxiv] LM-SimBench: A Unified Framework, Dataset, and Benchmark for Large Language Model Training Simulation — Evaluating candidate parallelization strategies through distributed training runs makes strategy selection prohibitively expensive at scale.
+- [arxiv] Toward Autonomous RTL and Synthesis Optimization: Benchmarking and Self-Improving Agents — Recent advances in large language models (LLMs) and autonomous agents are creating new opportunities for hardware design optimization. This
+- [arxiv] Benchmarking LLM Next-Step Recommendations with Knowledge Space Theory — Selecting an LLM for next-step recommendation requires benchmarks that reflect the intended educational task and domain. We present a benchm
+- [arxiv] Agent Benchmarks Stop Ranking Before They Run Out of Tasks — Data-science and ML-engineering agents are evaluated on benchmarks such as MLE-bench, ALE-Bench, SWE-fficiency and AlgoTune, whose tasks yie
 
 ## Findings by Source
 
-### Arxiv (65)
+### Arxiv (56)
 
-- **[A Benchmark and Layered Evaluation Protocol for Evidence-Grounded Shared Belief Updating in Connected Robotics](https://arxiv.org/abs/2611.11842v1)** _(score 13.433 · 2026-11-09 · Ranulfo Bezerra, Kimitoshi Yamazaki)_
-  Connected physical systems fuse observations from robots, IoT sensors, and edge-AI modules into a shared account of the world, yet most evaluations score only the final answer or action and cannot tell whether a method attributed the evidence, updated its belief, handled contradi
-- **[More Than Just Style: Benchmarking Personality Influence in Large Language Models](https://arxiv.org/abs/2611.12392v1)** _(score 12.433 · 2026-11-09 · Yuhao Liu, Mengyu Wang, Xiao Chen…)_
-  In addition to the effects of explicit input prompts and instructions, large language model outputs are influenced by underlying behavioral preferences similar to human personality tendencies. These tendencies can affect how models interpret situations and make decisions. However
-- **[ChemInsight: A Comprehensive Benchmark for Evaluating and Diagnosing Chemistry Understanding and Reasoning in Large Language Models](https://arxiv.org/abs/2611.11794v1)** _(score 11.933 · 2026-11-09 · Changyu Hu, Yiming Zou, Xin Tang…)_
-  We introduce ChemInsight, a benchmark designed to evaluate large language models (LLMs) on chemistry tasks that require multi-step reasoning and structured chemical understanding. We propose a two-dimensional scoring system (scope and depth) to assess both task coverage and reaso
-- **[EndoSCOP-V: A Multi-Turn Video Understanding Evaluation Framework for Multimodal Models in Endoscopy Reporting and Clinical Reasoning](https://arxiv.org/abs/2611.10626v1)** _(score 11.8 · 2026-11-07 · Abhishek Tyagi, Tanmay Jain, Vilas Biradar…)_
-  Endoscopic diagnosis unfolds over native video, where a single positive finding during traversal of the gastrointestinal tract sets off a multi-minute chain of reasoning over location, morphology, severity and intervention. Existing endoscopy multimodal benchmarks test only stati
-- **[OpenTWBench (Open Taiwan Benchmark): Taiwan-Domain Knowledge Evaluation for Large Language Models, and How the Measurement Apparatus Shapes the Score](https://arxiv.org/abs/2610.19848v1)** _(score 11.7 · 2026-10-14 · Liang-Hsun Huang, Min-Yi Chen, Chao-Chun Chuang…)_
-  We present OpenTWBench, an open evaluation suite for Taiwan-domain knowledge in large language models, built around two benchmarks. tw-exam-bench contains 255,854 four-option questions across 148 academic subjects, from fifteen years of Taiwan's national examinations published as
-- **[BDBBQ: A Human-AI Collaborative Benchmark for Bengali Social Bias in LLMs](https://arxiv.org/abs/2611.12407v1)** _(score 10.433 · 2026-11-09 · Provat Saha, Ashika Habib Khan, Tahseen Tanha…)_
-  Despite growing attention to social bias in large language models (LLMs), existing bias benchmarks provide limited coverage of culturally grounded evaluation in Bengali, particularly within Bangladesh's sociocultural context. To address this gap, we develop a bilingual extension
-- **[HiddenPathQA: A Benchmark for Knowledge Graph Question Answering When Questions Hide Their Paths](https://arxiv.org/abs/2611.11802v1)** _(score 10.433 · 2026-11-09 · Sumin Jo, Edward Choi)_
-  Knowledge graph question answering (KGQA) systems are typically evaluated on questions whose surface tokens lexically expose the gold KG path. Users, however, may ask questions without knowing the underlying schema: "Which condition could Andrew have due to family history?" compr
-- **[FinCutBench: A Continually Updated Benchmark for Measuring the Temporal Boundaries of LLM Financial Knowledge](https://arxiv.org/abs/2611.11588v1)** _(score 10.433 · 2026-11-08 · Siyuan Li, Ke Wan, Boyong Hou…)_
-  In financial backtesting and other point-in-time tasks, external inputs can be restricted by date, but model parameters may retain financial facts disclosed later, introducing parametric look-ahead bias. We introduce FinCutBench, a continually updated monthly financial knowledge
-- **[Infrathon: Benchmarking Language Agents for Real-World, Long-Horizon AI Infra Optimization](https://arxiv.org/abs/2611.11995v1)** _(score 10.433 · 2026-11-09 · Zhengyu Hu, Zheyuan Xiao, Yike Wang…)_
-  In this work, we study whether frontier agent can continually improve real-world AI infrastructure over long horizons. We introduce Infrathon, a benchmark of diverse, long-horizon AI infrastructure optimization tasks across different levels. We evaluate six models across 150 runs
-- **[LEGION: Benchmarking Language Agents on Sparse-Signal Investigation Under Adversarial Noise](https://arxiv.org/abs/2611.11896v1)** _(score 10.433 · 2026-11-09 · Samuel Joseph Amouyal, Ofek Glick, Yaniv Menasherov…)_
-  Autonomous language-model agents are increasingly deployed on discovery-driven tasks where signal is sparse and most retrieved information is irrelevant. Current benchmarks fail to evaluate this regime due to dense signals, cooperative environments, and ground truth typically bei
-- **[Publications as benchmarks: auditing AI agents on spatial transcriptomics alignment](https://arxiv.org/abs/2611.11796v1)** _(score 10.433 · 2026-11-09 · Yiqun T. Chen, Jan Matthias, Jianing Yao…)_
-  AI agents are increasingly automating data analysis, but responsible adoption requires reliable performance evaluation, which is costly in specialized scientific domains. We introduce a framework that translates scientific publications into auditable benchmarks for AI agents and
-- **[CoilStellaration: A Dataset and Benchmark for Engineering-Aware Stellarator Coilset Generation](https://arxiv.org/abs/2611.12689v1)** _(score 10.0 · 2026-11-09 · Jan-Hendrik Ewers, Santiago A. Cadena, Nicolò Foppiani…)_
-  Stellarators are fusion devices that use externally generated, three-dimensional magnetic fields to confine hot plasma and offer a promising route to commercial fusion. Their electromagnetic coils pose a challenging design problem: they must reproduce the target magnetic field wh
+- **[Chem World: A Large-Scale Benchmark and Physics-Aware Framework for Trustworthy Molecular Property Prediction](https://arxiv.org/abs/2611.13945v1)** _(score 12.433 · 2026-11-10 · Tianyou Bai, Huan Wang, Mingchen Gao…)_
+  Molecular property prediction is fundamental to computational chemistry and drug formulation research, yet existing benchmarks remain fragmented across datasets, properties, and evaluation protocols, limiting systematic evaluation of model generalization. We introduce Chem World,
+- **[LM-SimBench: A Unified Framework, Dataset, and Benchmark for Large Language Model Training Simulation](https://arxiv.org/abs/2611.14285v1)** _(score 12.0 · 2026-11-10 · Yu Dong, Hong Li, Qiang Sun…)_
+  Evaluating candidate parallelization strategies through distributed training runs makes strategy selection prohibitively expensive at scale. Performance simulation offers a lower cost alternative, yet controlled comparisons among existing simulators remain difficult because they
+- **[Toward Autonomous RTL and Synthesis Optimization: Benchmarking and Self-Improving Agents](https://arxiv.org/abs/2611.13713v1)** _(score 10.433 · 2026-11-10 · Wenji Fang, Yao Lu, Jinghua Wang…)_
+  Recent advances in large language models (LLMs) and autonomous agents are creating new opportunities for hardware design optimization. This paper examines three connected directions toward autonomous RTL and synthesis optimization: (1) Realistic benchmarking. We discuss reference
+- **[Benchmarking LLM Next-Step Recommendations with Knowledge Space Theory](https://arxiv.org/abs/2611.13667v1)** _(score 10.433 · 2026-11-10 · Peter Steiner, Jan Hochweber)_
+  Selecting an LLM for next-step recommendation requires benchmarks that reflect the intended educational task and domain. We present a benchmarking method that uses Knowledge Space Theory (KST) as a formal evaluation reference. Given a task catalogue and an existing prerequisite r
+- **[Agent Benchmarks Stop Ranking Before They Run Out of Tasks](https://arxiv.org/abs/2611.13541v1)** _(score 10.433 · 2026-11-10 · Zihan Dong, Qishi Zhan, Minxuan Hu)_
+  Data-science and ML-engineering agents are evaluated on benchmarks such as MLE-bench, ALE-Bench, SWE-fficiency and AlgoTune, whose tasks yield a quantity (a Kaggle metric, contest score or speedup). When one stops separating the best models, the usual remedy is a harder version.
+- **[AI Isn't Getting Dumber, We're Getting Pickier: Rising Standards in Human Evaluation of Large Language Models](https://arxiv.org/abs/2611.14333v1)** _(score 10.0 · 2026-11-10 · Zihan Chen, Lei Nico Zheng, Di Zhu)_
+  Users often complain that AI assistants such as ChatGPT are getting worse. Some versions do change, but human evaluation leaves a second possibility untested: the people judging may change. We separate the two on Chatbot Arena, a public platform where people compare answers from
+- **[PolyRoute: A Twelve-Language and Code-Mixed Benchmark for Typed-Decision Routing, with Baselines and a Leaderboard](https://arxiv.org/abs/2611.13843v1)** _(score 9.933 · 2026-11-10 · Mohammed Nayeem Khan, Sarun Kumar K S)_
+  Typed-decision encoders answer a question about a text in one forward pass, but their behaviour outside English is rarely measured on a fixed yardstick. We release PolyRoute: 322 native-language support messages in 12 languages and 9 writing systems, 156 code-mixed or romanised m
+- **[Beyond Scalar Leaderboards: Adaptive Sampling for Pareto Frontier Identification in Multi-Objective LLM Arenas](https://arxiv.org/abs/2610.27447v1)** _(score 9.033 · 2026-10-20 · Liang Twist Shan, Jiahao Ai, Zhimei Ren)_
+  The evaluation of large language models (LLMs) is inherently multi-objective, as different models may offer different tradeoffs across performance dimensions such as math, code, and writing. Because such evaluations are often based on costly and time-consuming human feedback, it
+- **[MMDM: Measuring Massive Multitask Decision Making](https://arxiv.org/abs/2611.14309v1)** _(score 9.0 · 2026-11-10 · Junhao Shen, Qing Zong, Yue Guo…)_
+  System-1 Decision Models directly make structured probabilistic decisions over query-specified options given a state in a single forward pass, without autoregressively generating reasoning trajectories or textual responses. Recent evaluations cover diverse tasks but often rely on
+- **[Beyond Leaderboards: A Method for Application-Specific Capability Profiling of Large Language Models](https://arxiv.org/abs/2610.25659v1)** _(score 8.967 · 2026-10-19 · Oleg Grynets, Vasyl Lyashkevych, Andrii Salyk…)_
+  Public leaderboards rank large language models (LLMs) in general, but an engineer has to choose a model for a specific application, architecture and cost. This paper presents a method for application-specific capability profiling of LLMs and its realization as a containerized tes
+- **[ACE-Compression: An Ability-Centric Evaluation of Compressed Large Language Models](https://arxiv.org/abs/2610.27913v1)** _(score 8.533 · 2026-10-20 · Jiahui Ning, Liang Chen, Yuchen Liang…)_
+  Model compression makes large language models deployable, but today's evaluation tells an incomplete story. Standard practice measures retained task performance and stops there. This misses a critical fact: compression perturbs the distributed knowledge embedded across billions o
+- **[Evaluating LLM-Generated World Models for Neuro-Symbolic Reasoning](https://arxiv.org/abs/2611.14419v1)** _(score 8.5 · 2026-11-10 · Souhaila Djaffal, Amna Jamal, Gagana Madhugiri Devaraja…)_
+  Formal world models can support planning, verification, and safety reasoning, but constructing them from open-ended natural-language situations is difficult, particularly in multi-agent settings where several formalizations may be plausible. We study whether five LLMs can generat
 
 ### Huggingface (2)
 
-- **[goodgentleman918/ai-data-quality-llm-evaluation-benchmark](https://huggingface.co/datasets/goodgentleman918/ai-data-quality-llm-evaluation-benchmark)** _(score 15.51 · 2026-11-10)_
-  Hugging Face dataset — 0 downloads, 1 likes. Tags: task_categories:reinforcement-learning, language:en, license:mit, size_categories:n<1K, modality:text
-- **[abdullahashraf122/algomyth-code-generation-benchmark](https://huggingface.co/datasets/abdullahashraf122/algomyth-code-generation-benchmark)** _(score 6.973 · 2026-10-18 · 59 downloads)_
+- **[goodgentleman918/ai-data-quality-llm-evaluation-benchmark](https://huggingface.co/datasets/goodgentleman918/ai-data-quality-llm-evaluation-benchmark)** _(score 15.448 · 2026-11-10 · 42 downloads)_
+  Hugging Face dataset — 42 downloads, 1 likes. Tags: task_categories:reinforcement-learning, language:en, license:mit, size_categories:n<1K, modality:text
+- **[abdullahashraf122/algomyth-code-generation-benchmark](https://huggingface.co/datasets/abdullahashraf122/algomyth-code-generation-benchmark)** _(score 6.906 · 2026-10-18 · 59 downloads)_
   Hugging Face dataset — 59 downloads, 0 likes. Tags: task_categories:text-generation, annotations_creators:machine-generated, multilinguality:monolingual, source_datasets:original, language:en
 
 ---
