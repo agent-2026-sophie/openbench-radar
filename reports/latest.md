@@ -1,6 +1,6 @@
 # OpenBench Radar — AI/LLM Benchmark Digest
 
-> Generated **2026-11-17 17:26 UTC** · 64 items · topics: LLM evaluation benchmark, large language model leaderboard, code generation benchmark, reasoning benchmark LLM, agent benchmark evaluation · analysis: extractive fallback
+> Generated **2026-11-18 16:59 UTC** · 64 items · topics: LLM evaluation benchmark, large language model leaderboard, code generation benchmark, reasoning benchmark LLM, agent benchmark evaluation · analysis: extractive fallback
 
 ## Executive Summary
 
@@ -8,48 +8,48 @@ Retrieved **64** relevant items across topics (LLM evaluation benchmark, large l
 
 ## Key Highlights
 
-- [huggingface] goodgentleman918/ai-data-quality-llm-evaluation-benchmark — Hugging Face dataset — 106 downloads, 1 likes. Tags: task_categories:reinforcement-learning, language:en, license:mit, size_categories:n<1K,
+- [arxiv] SOTA or Luck? The Winner's Curse in LLM Leaderboards — Public LLM leaderboards guide model evaluation and adoption, yet the reported performance of top-ranked models can be systematically oversta
+- [arxiv] AfriNORM: An Evaluation Benchmark for Normative Reasoning of LLMs Across African Cultures — Large language models (LLMs) are increasingly deployed across various sectors. However, current evaluation benchmarks are insufficient to as
+- [huggingface] goodgentleman918/ai-data-quality-llm-evaluation-benchmark — Hugging Face dataset — 107 downloads, 1 likes. Tags: task_categories:reinforcement-learning, language:en, license:mit, size_categories:n<1K,
 - [arxiv] SAGE-QA: Semantic-Aware, Grounded Evaluation for Closed-Context Question Answering on SQuAD 2.0 — Closed-context question answering (QA) requires a system to generate an answer strictly supported by a supplied passage, or to abstain when
-- [arxiv] CuRSE-Bench: A Benchmark for Probing Cultural Blind Spots in Text-to-Image Safety Evaluation — Text-to-image (T2I) safety evaluation typically assigns each prompt or image a single culture-blind harm label, so content that is harmful o
-- [arxiv] Evaluation-Free Recursive Self-Improvement for Coding Agents — Recent self-improving coding agents have achieved strong benchmark performance by iteratively modifying their own executable implementations
-- [arxiv] DetourBench: Trajectory-Level Evaluation of Interactive Agents with Exact Minimum-Action Bounds — Benchmarks judge language-model agents mainly by whether they reach the correct final state, not by how they got there. Endpoint scoring can
-- [arxiv] Tracing Knowledge and Reasoning in LLM — Current evaluations of Large Language Models (LLMs) report performance at the dataset or task level, revealing what a model achieves but off
+- [arxiv] FVScore: Specification-Driven Neuro-Symbolic Video Evaluation — We introduce Faithfulness Video Score (FVSCORE), a neuro-symbolic framework for specification-driven video generation evaluation. Existing e
+- [arxiv] Who Pays for Byzantine Robustness? Validity, Data-Share Dictatorships, and Fairness When Only a Few Hospitals Collaborate — Clinical federated learning (FL) collaborations typically connect only three to six hospitals, yet Byzantine-robust aggregation rules are de
 
 ## Findings by Source
 
 ### Arxiv (62)
 
-- **[SAGE-QA: Semantic-Aware, Grounded Evaluation for Closed-Context Question Answering on SQuAD 2.0](https://arxiv.org/abs/2611.16300v1)** _(score 13.667 · 2026-11-12 · Chandra N Sekharan, Vishakan Umapathy, Abhishek Phadke)_
+- **[SOTA or Luck? The Winner's Curse in LLM Leaderboards](https://arxiv.org/abs/2611.22227v1)** _(score 15.933 · 2026-11-17 · Sikun Xu, Raphael Thomadsen, Dennis J. Zhang…)_
+  Public LLM leaderboards guide model evaluation and adoption, yet the reported performance of top-ranked models can be systematically overstated. This leaderboard winner's curse arises because ranking noisy benchmark scores rewards sampling luck alongside genuine ability. The same
+- **[AfriNORM: An Evaluation Benchmark for Normative Reasoning of LLMs Across African Cultures](https://arxiv.org/abs/2611.22580v1)** _(score 15.433 · 2026-11-17 · Ahmad Samuel Gali, Tadesse Destaw Belay, Idris Abdulmumin…)_
+  Large language models (LLMs) are increasingly deployed across various sectors. However, current evaluation benchmarks are insufficient to assess the applicability of these models in local African contexts, as most focus on linguistic fluency (grammar/translation) rather than cult
+- **[SAGE-QA: Semantic-Aware, Grounded Evaluation for Closed-Context Question Answering on SQuAD 2.0](https://arxiv.org/abs/2611.16300v1)** _(score 13.6 · 2026-11-12 · Chandra N Sekharan, Vishakan Umapathy, Abhishek Phadke)_
   Closed-context question answering (QA) requires a system to generate an answer strictly supported by a supplied passage, or to abstain when the passage lacks adequate evidence. SQuAD 2.0 is a widely used benchmark for this setting, scored by Exact Match (EM) i.e., character-level
-- **[CuRSE-Bench: A Benchmark for Probing Cultural Blind Spots in Text-to-Image Safety Evaluation](https://arxiv.org/abs/2611.20821v1)** _(score 13.433 · 2026-11-16 · Minsuk Jang, Minseok Son, KiHyun Seol…)_
-  Text-to-image (T2I) safety evaluation typically assigns each prompt or image a single culture-blind harm label, so content that is harmful only within a particular culture can pass as benign. We introduce CultureCraft, an agentic framework that constructs T2I prompts that appear
-- **[Evaluation-Free Recursive Self-Improvement for Coding Agents](https://arxiv.org/abs/2611.21056v1)** _(score 11.933 · 2026-11-16 · Zhe Ren, Guowei Rong, Yimeng Chen…)_
-  Recent self-improving coding agents have achieved strong benchmark performance by iteratively modifying their own executable implementations. A common pattern uses downstream task-derived evidence to decide which candidates or lineages continue evolving, which we term evaluate-an
-- **[DetourBench: Trajectory-Level Evaluation of Interactive Agents with Exact Minimum-Action Bounds](https://arxiv.org/abs/2611.20844v1)** _(score 11.933 · 2026-11-16 · Hanlin Tian, Sihan Zhu, Zhao Yang…)_
-  Benchmarks judge language-model agents mainly by whether they reach the correct final state, not by how they got there. Endpoint scoring cannot separate an agent that retrieved exactly the evidence a decision required from one that read most of the environment, nor an agent that
-- **[Tracing Knowledge and Reasoning in LLM](https://arxiv.org/abs/2611.17461v1)** _(score 10.733 · 2026-11-12 · Yang Wang, Xiao Wang, Yiqi Liu…)_
-  Current evaluations of Large Language Models (LLMs) report performance at the dataset or task level, revealing what a model achieves but offering little insight into the internal processing associated with its performance. We propose a task-centric framework for characterising th
-- **[When Do Histology Foundation Models Need Geometric Test-Time Augmentation?](https://arxiv.org/abs/2611.21565v1)** _(score 10.5 · 2026-11-16 · Lars Chen, Valentino F. Foit, Dorry Segev…)_
-  Test-time augmentation (TTA) aggregates model predictions across multiple transformed views of an input during inference. Because histology images lack a canonical orientation, $D_4$ TTA---pooling across the 8 rotations and reflections of a square---is a standard default in compu
-- **[ReconPotBench: Evaluating LLM Honeypots in Multi-Round Linux Reconnaissance](https://arxiv.org/abs/2611.20528v1)** _(score 10.433 · 2026-11-16 · Qianli Wang, Junchao Wu, Binkai Ou…)_
-  Large language models (LLMs) are increasingly used to build interactive honeypots, yet existing evaluations mainly assess isolated command outputs and cannot determine whether a system remains believable when later commands depend on earlier results. We present ReconPotBench, a m
-- **[VAHBench: A Harness Benchmark for Agentic Long-Video Generation](https://arxiv.org/abs/2611.20535v1)** _(score 10.433 · 2026-11-16 · Hongbo Zhang, Liuyang Song, Hang Zhou…)_
-  AI agents are commonly used for everyday information retrieval and coding. We ask whether they can also interpret human requests and turn them into complete videos. We introduce VAHBench, a benchmark that tests this ability through five short-drama briefs specifying story, charac
-- **[VisualArtifactSpec 1.0: Evaluating Visual Artifacts under Task Specifications](https://arxiv.org/abs/2611.21382v1)** _(score 10.433 · 2026-11-16 · Shuyi Ouyang, Xiaojun Tang, Zijian Zou…)_
-  Visual artifact tasks test agents' ability to translate task specifications and source materials into outputs that meet practical needs. Evaluation across artifact families helps distinguish broadly applicable authoring capabilities from strengths confined to a particular medium.
-- **[A Dataset for Misogyny Detection in Polish Social Media: Transferability of Hateful Speech Detection from General to Specific Types of Hate](https://arxiv.org/abs/2611.20044v1)** _(score 10.367 · 2026-11-15 · Ewelina Gajewska)_
-  Harmful language detection is commonly evaluated on broadly defined hate speech and toxicity benchmarks, yet it remains unclear whether models that successfully detect harmful language in general can transfer this capability to more specific forms of hate. We investigate this pro
-- **[IndustrialKnowEval: A Benchmark for Evaluating Multi-Level Industrial Knowledge in LLMs](https://arxiv.org/abs/2611.20695v1)** _(score 9.933 · 2026-11-16 · Haiteng Wang, Haoze Li, Jingwei Guo…)_
-  Large language models (LLMs) are increasingly explored for industrial tasks, yet few benchmarks evaluate their mastery of industrial knowledge across different types of cognitive demand. We introduce IndustrialKnowEval (IndKnow), a benchmark for industrial knowledge and engineeri
-- **[Benchmark Factory: Agentic Benchmark Creation via Dataset Curation and Label-Free Quality Anchors](https://arxiv.org/abs/2611.18890v1)** _(score 9.8 · 2026-11-13 · Shervin Shahidi, James Poon, Hang Xie…)_
-  Teams deploying coding agents need benchmarks built from their own code, but curating and validating them by hand is resource intensive, and an unvalidated benchmark can mislead silently. We present Benchmark Factory, an autonomous meta-agent loop with human checkpoints: an LLM a
+- **[FVScore: Specification-Driven Neuro-Symbolic Video Evaluation](https://arxiv.org/abs/2611.22673v1)** _(score 11.933 · 2026-11-17 · Do Xuan Long, Long T. Le, Yiwen Song…)_
+  We introduce Faithfulness Video Score (FVSCORE), a neuro-symbolic framework for specification-driven video generation evaluation. Existing evaluators rely on holistic MLLM judgments or vision-language metrics, yet aligning their scores with human judgments and tracing them to spe
+- **[Who Pays for Byzantine Robustness? Validity, Data-Share Dictatorships, and Fairness When Only a Few Hospitals Collaborate](https://arxiv.org/abs/2611.22904v1)** _(score 10.933 · 2026-11-17 · Adnan Malkani)_
+  Clinical federated learning (FL) collaborations typically connect only three to six hospitals, yet Byzantine-robust aggregation rules are designed and benchmarked on synthetic partitions across dozens of equal-sized clients. We conduct an empirical audit of eight standard aggrega
+- **[Do Diffusion Models Learn to Generalize Basic Visual Skills?](https://arxiv.org/abs/2611.22427v1)** _(score 10.933 · 2026-11-17 · Amish Sethi, Boya Zeng, Wenhao Chai…)_
+  Diffusion models generate high-quality images, but how well they generalize is hard to measure. Current evaluations rely on human preference and prompt-following benchmarks for text-to-image models and on distribution-level metrics such as Fréchet Inception Distance (FID) and Inc
+- **[ForecastGym: A Live, Controlled, and Replayable Benchmark for Forecasting Agents](https://arxiv.org/abs/2611.23045v1)** _(score 10.433 · 2026-11-17 · Yicheng Tao, Yuante Li, Zipei Fan)_
+  Agents built on large language models (LLMs) increasingly forecast real-world events by searching the Web and reasoning over what they find. How well such an agent forecasts depends on both the retrieved evidence and the model, making control over that evidence essential for eval
+- **[DiagTrace: An Interactive Benchmark for Clinical Decision Making](https://arxiv.org/abs/2611.22009v1)** _(score 10.433 · 2026-11-16 · Yufan Wang, Rui Yang, Yi Lin…)_
+  Large language models (LLMs) have shown strong performance on medical question answering and diagnostic reasoning benchmarks. However, existing evaluations typically provide all patient information upfront and assess only the final diagnosis or rationale. This setup ignores the n
+- **[AI Isn't Getting Dumber, We're Getting Pickier: Rising Standards in Human Evaluation of Large Language Models](https://arxiv.org/abs/2611.14333v1)** _(score 9.467 · 2026-11-10 · Zihan Chen, Lei Nico Zheng, Di Zhu)_
+  Users often complain that AI assistants such as ChatGPT are getting worse. Some versions do change, but human evaluation leaves a second possibility untested: the people judging may change. We separate the two on Chatbot Arena, a public platform where people compare answers from
+- **[Right Diagnosis, Unsafe Route: Auditing Clinical AI Decision Trajectories and Corrective Oversight for Validity and Potential Harm](https://arxiv.org/abs/2611.22612v1)** _(score 8.933 · 2026-11-17 · Guanqiao Chen, Wei Jiang, Shu Zhang…)_
+  A clinical AI system can reach a correct final diagnosis through intermediate decisions that could have harmed the patient, and can repair an error while introducing new risks. Most evaluations score final diagnoses; even stepwise benchmarks, which release a case's evidence over
+- **[RAG in a Trenchcoat: When Minimal Memory Is Enough for Agentic Systems, and When It Isn't](https://arxiv.org/abs/2611.22179v1)** _(score 8.933 · 2026-11-17 · Jingyu Liu, Zongze Li, Zach Xu…)_
+  Agentic memory research has accumulated extraction, supersession, reflection, and graph synthesis on top of retrieval-augmented generation. However, we found that almost none of those primitives earn their cost in our tested memory benchmarks: we show this with BRIDGE, a delibera
+- **[Can Coding Agents Write and Transpile Unit Tests](https://arxiv.org/abs/2611.21797v1)** _(score 8.933 · 2026-11-16 · Gil Pasternak, AJ Langley, Tom Yotam…)_
+  Coding assistants built on Large Language Models (LLMs) have become a staple of modern software development, increasingly trusted to execute workflows and modernize code end-to-end. Much of this trust rests on passing tests, which are often written by the coding agents themselves
 
 ### Huggingface (2)
 
-- **[goodgentleman918/ai-data-quality-llm-evaluation-benchmark](https://huggingface.co/datasets/goodgentleman918/ai-data-quality-llm-evaluation-benchmark)** _(score 15.054 · 2026-11-10 · 106 downloads)_
-  Hugging Face dataset — 106 downloads, 1 likes. Tags: task_categories:reinforcement-learning, language:en, license:mit, size_categories:n<1K, modality:text
-- **[abdullahashraf122/algomyth-code-generation-benchmark](https://huggingface.co/datasets/abdullahashraf122/algomyth-code-generation-benchmark)** _(score 6.504 · 2026-10-18 · 37 downloads)_
-  Hugging Face dataset — 37 downloads, 0 likes. Tags: task_categories:text-generation, annotations_creators:machine-generated, multilinguality:monolingual, source_datasets:original, language:en
+- **[goodgentleman918/ai-data-quality-llm-evaluation-benchmark](https://huggingface.co/datasets/goodgentleman918/ai-data-quality-llm-evaluation-benchmark)** _(score 14.987 · 2026-11-10 · 107 downloads)_
+  Hugging Face dataset — 107 downloads, 1 likes. Tags: task_categories:reinforcement-learning, language:en, license:mit, size_categories:n<1K, modality:text
+- **[abdullahashraf122/algomyth-code-generation-benchmark](https://huggingface.co/datasets/abdullahashraf122/algomyth-code-generation-benchmark)** _(score 6.436 · 2026-10-18 · 27 downloads)_
+  Hugging Face dataset — 27 downloads, 0 likes. Tags: task_categories:text-generation, annotations_creators:machine-generated, multilinguality:monolingual, source_datasets:original, language:en
 
 ---
 
